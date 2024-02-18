@@ -1,8 +1,8 @@
 function Computerchooses() {
-    const options = ["rock","paper","scissors"];
+
     let x = Math.floor(Math.random() * 3);
-    console.log(options[x]);
-    return options[x];
+    
+    return x;
     
 }
 
@@ -11,29 +11,43 @@ function getUserChoice() {
     do {
         choice = prompt("Enter 'rock', 'paper', or 'scissors':").toLowerCase();
     } while (choice !== 'rock' && choice !== 'paper' && choice !== 'scissors');
-    console.log(choice);
+    
+    if(choice == "rock"){
+        choice = 0
+    }
+    if (choice == "paper"){
+        choice = 1
+    }
+    if (choice == "scissors") {
+        choice = 2
+    }
+    
     return choice;
     
 }
 
 function round() {
-    
-    if (Computerchooses() == getUserChoice()){
-        console.log("tie play again")
+    let computerChoice = Computerchooses();
+    let userChoice = getUserChoice();
+
+    console.log("Computer choice:", computerChoice);
+    console.log("User choice:", userChoice);
+
+    if (computerChoice === userChoice) {
+        console.log("tie play again");
+    } else if (computerChoice === 0 && userChoice === 2) {
+        console.log("You Lose! Rock beats scissors");
+    } else if (computerChoice === 2 && userChoice === 0) {
+        console.log("You Win! Rock beats scissors");
+    } else if (computerChoice === 1 && userChoice === 0) {
+        console.log("You Lose! Paper beats rock");
+    } else if (computerChoice === 0 && userChoice === 1) {
+        console.log("You Win! Paper beats rock");
+    } else if (computerChoice === 2 && userChoice === 1) {
+        console.log("You Lose! Scissors beats paper");
+    } else if (computerChoice === 1 && userChoice === 2) {
+        console.log("You Win! Scissors beats paper");
     }
-
-    if("rock" > "paper") {
-        console.log("larger string wins")
-    }
-
-    // rock beats paper - both ways 
-
-    // scissor beats paper - if computer chooses scissor and user chooses paper 
-
-
 }
 
-
-Computerchooses();
-getUserChoice();
 round()
